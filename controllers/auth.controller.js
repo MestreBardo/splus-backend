@@ -1,8 +1,10 @@
 const { validationResult } = require('express-validator');
 const bcrypt = require('bcrypt');
-const User = require('../models/user')
+const User = require('../models/user');
+var jwt = require('jsonwebtoken');
 
 exports.register = async (req,res, next) => {
+
   const result = validationResult(req);
   if(result.errors.length === 0) {
     const hashPassword = await bcrypt.hash(req.body.password,12);
@@ -14,6 +16,32 @@ exports.register = async (req,res, next) => {
     })
     return res.send('ok')
   }
-  const errors = result.errors.map( error => error.msg)
+  const errors = result.errors.map(error => error.msg)
   return res.send(errors)
 } 
+
+exports.login = async (req,res,next) => {
+  User.findAll({ where: {
+    email: req.body.email
+  }}).then(users => {
+    if(users.length === 1){
+      return bcrypt.compare(req.body.password,users[0].password)
+      .then(result => {
+        if(result) {
+          return res.send(jwt.sign({
+            name: users[0].name,
+            surname: users[0].surname,
+            email: users[0].email
+          }, 'secret', { expiresIn: '1h' }))
+        }
+        return res.send('Your Password is incorrect')
+      })
+      .catch(err => {
+        console.log(err)
+      })
+      
+      
+    }
+    return res.status(500).send('Email not found!')
+  })
+}

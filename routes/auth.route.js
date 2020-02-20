@@ -29,4 +29,6 @@ route.post('/register', [
     .withMessage('Password is too short')
 ] ,authCtrl.register)
 
+route.post('/login', authCtrl.login)
+
 module.exports = route;
