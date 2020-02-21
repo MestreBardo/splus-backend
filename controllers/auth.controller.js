@@ -2,9 +2,9 @@ const { validationResult } = require('express-validator');
 const bcrypt = require('bcrypt');
 const User = require('../models/user');
 var jwt = require('jsonwebtoken');
+const config = require('config');
 
 exports.register = async (req,res, next) => {
-
   const result = validationResult(req);
   if(result.errors.length === 0) {
     const hashPassword = await bcrypt.hash(req.body.password,12);
@@ -21,6 +21,7 @@ exports.register = async (req,res, next) => {
 } 
 
 exports.login = async (req,res,next) => {
+  console.log(config.get('JWT.secret'))
   User.findAll({ where: {
     email: req.body.email
   }}).then(users => {
@@ -32,7 +33,7 @@ exports.login = async (req,res,next) => {
             name: users[0].name,
             surname: users[0].surname,
             email: users[0].email
-          }, 'secret', { expiresIn: '1h' }))
+          }, config.get('JWT.secret'), { expiresIn: '2d' }))
         }
         return res.send('Your Password is incorrect')
       })

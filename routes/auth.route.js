@@ -7,6 +7,7 @@ const { body } = require('express-validator');
 const authCtrl = require('../controllers/auth.controller')
 
 route.post('/register', [
+  body('name').escape().trim(),
   body('email')
     .isEmail()
     .normalizeEmail()
@@ -32,3 +33,7 @@ route.post('/register', [
 route.post('/login', authCtrl.login)
 
 module.exports = route;
+
+const validate = (req,res,next) => {
+
+}
