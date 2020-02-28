@@ -33,7 +33,3 @@ route.post('/register', [
 route.post('/login', authCtrl.login)
 
 module.exports = route;
-
-const validate = (req,res,next) => {
-
-}
