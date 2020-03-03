@@ -12,6 +12,10 @@ const PackageItem = sequelize.define('package_item',{
   description: {
     type: Sequelize.STRING,
     allowNull: false
+  },
+  quantity: {
+    type: Sequelize.INTEGER,
+    allowNull: false
   }
 })
 
