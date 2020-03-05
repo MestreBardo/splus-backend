@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 const config = require('config');
 
 const sequelize = new Sequelize(
-  "mysql://xkvy3oci95b2blso:v2swq3rdxacwwbcx@k2fqe1if4c7uowsh.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/mo7wcty3ei4br1sh",
+  "mysql://b0b87172576d40:6ce31383@us-cdbr-iron-east-04.cleardb.net/heroku_f0c3bff07ffd5dd?reconnect=true",
     {dialect: 'mysql', host: config.get('Customer.dbConfig.host')}
   )
 
