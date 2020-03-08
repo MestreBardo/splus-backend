@@ -24,7 +24,7 @@ Package.hasMany(PackageItem, { foreignKey: 'packageId' })
 sequelize
 .sync({force:true})
 .then(result => {
-  app.listen(process.env.PORT)
+  app.listen(process.env.PORT || 8000)
 })
 
 app.post('/',(req,res,next) => {
