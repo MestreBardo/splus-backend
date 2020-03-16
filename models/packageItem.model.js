@@ -9,12 +9,16 @@ const PackageItem = sequelize.define('package_item',{
     allowNull: false,
     primaryKey: true
   },
-  description: {
+  type: {
     type: Sequelize.STRING,
     allowNull: false
   },
-  quantity: {
-    type: Sequelize.INTEGER,
+  toDo: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  serialNumber: {
+    type: Sequelize.STRING,
     allowNull: false
   }
 })

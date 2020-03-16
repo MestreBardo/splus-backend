@@ -2,12 +2,23 @@ const Package = require('../models/package.model');
 const PackageItem = require('../models/packageItem.model');
 
 exports.postPackage = async(req,res,next) => {
-  let items = req.body.itens;
+  let itens = [];
+  req.body.itens.map(item => {
+        item.itens.map(itemPackage => {
+            itens.push({
+              type: item.name,
+              ...itemPackage
+            })
+          })
+        }
+      );
+    console.log(itens)
+
   Package.create({
     userId: req.body.id,
     description: req.body.description,
     receivedFrom: req.body.packageFrom,
-    package_items : items
+    package_items : itens
   },{include: [ PackageItem ]})
   .then(data => {
     res.send(data);
