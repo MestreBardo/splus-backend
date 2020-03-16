@@ -26,21 +26,3 @@ sequelize
 .then(result => {
   app.listen(process.env.PORT || 8000)
 })
-
-app.post('/',(req,res,next) => {
-  let items = [];
-  req.body.items.forEach(element => {
-    items.push({
-      description: element
-    })
-  });
-  console.log(items)
-  Package.create({
-    userId: req.body.id,
-    package_items : items
-  },{include: [ PackageItem ]})
-  .then(data => {
-    res.send(data);
-  })
-  
-})

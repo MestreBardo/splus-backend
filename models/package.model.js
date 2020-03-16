@@ -9,27 +9,30 @@ const Package = sequelize.define('package',{
     allowNull: false,
     primaryKey: true
   },
-  delivered: {
-    type: Sequelize.BOOLEAN,
-    allowNull: false,
-    defaultValue: false 
+  title: {
+    type: Sequelize.STRING,
+    allowNull: false
   },
   description: {
+    type: Sequelize.STRING
+  },
+  receivedFrom: {
     type: Sequelize.STRING,
     allowNull: false
   },
-  received_from: {
-    type: Sequelize.STRING,
-    allowNull: false
-  },
-  delivered_at:{
-    type: Sequelize.DATE,
-    defaultValue: null
-  },
-  received_date: {
+  receivedDate: {
     type: Sequelize.DATE,
     allowNull: false,
     defaultValue: Sequelize.NOW()
+  },
+  deliveredTo: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    defaultValue: false 
+  },
+  deliveredDate:{
+    type: Sequelize.DATE,
+    defaultValue: null
   }
 })
 
