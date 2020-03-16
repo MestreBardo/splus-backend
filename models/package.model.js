@@ -9,10 +9,6 @@ const Package = sequelize.define('package',{
     allowNull: false,
     primaryKey: true
   },
-  title: {
-    type: Sequelize.STRING,
-    allowNull: false
-  },
   description: {
     type: Sequelize.STRING
   },
