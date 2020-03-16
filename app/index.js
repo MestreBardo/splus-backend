@@ -22,7 +22,7 @@ PackageItem.belongsTo(Package, { foreignKey: 'packageId' })
 Package.hasMany(PackageItem, { foreignKey: 'packageId' })
 
 sequelize
-.sync({force:true})
+.sync()
 .then(result => {
   app.listen(process.env.PORT || 7000)
 })
