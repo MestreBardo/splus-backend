@@ -5,7 +5,6 @@ exports.postPackage = async(req,res,next) => {
   let items = req.body.itens;
   Package.create({
     userId: req.body.id,
-    title: req.body.title,
     description: req.body.description,
     receivedFrom: req.body.packageFrom,
     package_items : items
