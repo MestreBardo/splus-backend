@@ -2,9 +2,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const authRoute = require('../routes/auth.route');
 const packageRoute = require('../routes/package.route')
-const User = require('../models/user');
-const Package = require('../models/package');
-const PackageItem = require('../models/packageItem');
+const User = require('../models/user.model');
+const Package = require('../models/package.model');
+const PackageItem = require('../models/packageItem.model');
 const cors = require('cors');
 
 const app = express();

@@ -1,5 +1,5 @@
-const Package = require('../models/package');
-const PackageItem = require('../models/packageItem');
+const Package = require('../models/package.model');
+const PackageItem = require('../models/packageItem.model');
 
 exports.postPackage = async(req,res,next) => {
   let items = req.body.itens;
